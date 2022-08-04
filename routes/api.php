@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +19,13 @@ use App\Http\Controllers\AuthController;
 //     return $request->user();
 // });
 
-Route::prefix('v1')->group(function() {
-    Route::controller(AuthController::class)->group(function () {
-        Route::post('login', 'login');
-        Route::post('register', 'register');
-        Route::post('logout', 'logout');
-        Route::post('refresh', 'refresh');
+Route::prefix('v1')->group(function () {
+    Route::prefix('user')->group(function () {
+        Route::controller(AuthController::class)->group(function () {
+            Route::post('login', 'login');
+            Route::post('create', 'create');
+            Route::post('logout', 'logout');
+            Route::post('refresh', 'refresh');
+        });
     });
 });
-
