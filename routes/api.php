@@ -26,6 +26,7 @@ Route::prefix('v1')->group(function () {
             Route::post('create', 'create');
             Route::post('logout', 'logout');
             Route::post('refresh', 'refresh');
+            Route::patch('edit', 'edit');
         });
     });
 });

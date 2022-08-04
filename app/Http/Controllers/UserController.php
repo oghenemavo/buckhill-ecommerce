@@ -46,6 +46,24 @@ class UserController extends Controller
         ]);
     }
 
+    public function edit(Request $request)
+    {
+        var_dump($request->all());
+        $user = $this->_userRepository->updateUser($request->all(), auth()->user());
+
+        if ($user) {
+            return response()->json([
+                'status' => true,
+                'message' => 'User updated successfully',
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Unable to update User',
+        ]);
+    }
+
     public function login(Request $request)
     {
         $request->validate([
