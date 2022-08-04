@@ -33,19 +33,11 @@ class UserController extends Controller
         $user = $this->_userRepository->createUser($request->all());
 
         if ($user) {
-            $token = Auth::login($user);
-
-            if ($token) {
-                return response()->json([
-                    'status' => true,
-                    'message' => 'User created successfully',
-                    'data' => $user,
-                    'authorization' => [
-                        'token' => $token,
-                        'type' => 'bearer',
-                    ],
-                ]);
-            }
+            return response()->json([
+                'status' => true,
+                'message' => 'User created successfully',
+                'data' => $user,
+            ]);
         }
 
         return response()->json([
@@ -65,7 +57,7 @@ class UserController extends Controller
         $token = Auth::attempt($credentials);
         if (! $token) {
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'Unauthorized',
             ], 401);
         }
@@ -73,7 +65,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'data' => $user,
             'authorization' => [
                 'token' => $token,
@@ -85,8 +77,8 @@ class UserController extends Controller
     public function refresh()
     {
         return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
+            'status' => true,
+            'user' => auth()->user(),
             'authorization' => [
                 'token' => Auth::refresh(),
                 'type' => 'bearer',
@@ -96,10 +88,10 @@ class UserController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        auth()->logout();
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'message' => 'Successfully logged out',
         ]);
     }
