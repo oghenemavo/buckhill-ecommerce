@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('first_name')->after('uuid');
             $table->string('last_name')->after('first_name');
             $table->tinyInteger('is_admin')->default(0)->after('last_name');
-            $table->char('avatar', 36)->unique()->after('password');
+            $table->char('avatar', 36)->unique()->nullable()->after('password');
             $table->string('address')->after('avatar');
             $table->string('phone_number')->after('address');
             $table->tinyInteger('is_marketing')->default(0)->after('phone_number');
-            $table->string('last_login_at');
+            $table->string('last_login_at')->nullable();
 
             $table->dropColumn('name');
         });
