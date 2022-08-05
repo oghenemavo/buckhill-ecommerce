@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements IUserRepository
 {
-    public function createUser(array $attributes): User
+    public function createUser(array $attributes)
     {
         $user = User::create([
             'first_name' => data_get($attributes, 'first_name'),
