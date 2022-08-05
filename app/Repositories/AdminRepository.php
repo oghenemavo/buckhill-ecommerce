@@ -44,4 +44,11 @@ class AdminRepository implements IAdminRepository
 
         return $user;
     }
+
+    public function deleteUser($uuid)
+    {
+        $user = User::query()->where('uuid', $uuid)->firstOrFail();
+
+        return $user->delete();
+    }
 }

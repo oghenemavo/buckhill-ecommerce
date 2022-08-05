@@ -40,4 +40,14 @@ class UserController extends Controller
             'message' => 'Unable to update user',
         ]);
     }
+
+    public function delete($uuid)
+    {
+        $this->adminRepository->deleteUser($uuid);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User deleted successfully',
+        ]);
+    }
 }

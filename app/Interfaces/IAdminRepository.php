@@ -9,4 +9,6 @@ interface IAdminRepository
     public function fetchUsers();
 
     public function updateUser(array $adminBody, string $uuid);
+
+    public function deleteUser(string $uuid);
 }

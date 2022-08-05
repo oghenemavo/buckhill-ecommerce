@@ -43,7 +43,7 @@ Route::prefix('v1')->group(function () {
         Route::controller(AdminUserController::class)->middleware('auth:api')->group(function () {
             Route::get('user-listing', 'allUsers');
             Route::put('user-edit/{uuid}', 'editUser');
-            // Route::post('logout', 'logout');
+            Route::delete('user-delete/{uuid}', 'delete');
         });
     });
 });
