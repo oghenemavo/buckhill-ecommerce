@@ -25,12 +25,11 @@ class UserRepository implements IUserRepository
     public function updateUser(array $attributes, User $user)
     {
         return $user->update([
-            'first_name' => data_get($attributes, 'first_name'),
-            // 'last_name' => data_get($attributes, 'last_name', $user->last_name),
-            // 'phone_number' => data_get($attributes, 'phone_number', $user->phone_number),
-            // 'address' => data_get($attributes, 'address', $user->address),
-            // 'email' => data_get($user->email, 'email'),
-            // 'password' => Hash::make(data_get($user->password, 'password')),
+            'first_name' => data_get($attributes, 'first_name', $user->first_name),
+            'last_name' => data_get($attributes, 'last_name', $user->last_name),
+            'phone_number' => data_get($attributes, 'phone_number', $user->phone_number),
+            'address' => data_get($attributes, 'address', $user->address),
+            'email' => data_get($user->email, 'email', $user->email),
         ]);
     }
 }

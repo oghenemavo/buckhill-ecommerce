@@ -22,11 +22,12 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::prefix('user')->group(function () {
         Route::controller(UserController::class)->group(function () {
-            Route::post('login', 'login');
+            Route::get('/', 'index');
             Route::post('create', 'create');
+            Route::post('login', 'login');
             Route::post('logout', 'logout');
             Route::post('refresh', 'refresh');
-            Route::patch('edit', 'edit');
+            Route::put('edit', 'edit');
         });
     });
 });

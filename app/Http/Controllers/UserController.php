@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPostRequest;
+use App\Http\Requests\UserPutRequest;
 use App\Interfaces\IUserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -46,9 +48,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit(Request $request)
+    public function edit(UserPutRequest $request)
     {
-        var_dump($request->all());
         $user = $this->_userRepository->updateUser($request->all(), auth()->user());
 
         if ($user) {
@@ -77,7 +78,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Unauthorized',
-            ], 401);
+            ], Response::HTTP_UNAUTHORIZED);
         }
 
         $user = Auth::user();
