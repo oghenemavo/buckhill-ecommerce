@@ -116,4 +116,14 @@ class UserController extends Controller
             'message' => 'Successfully logged out',
         ]);
     }
+
+    public function remove()
+    {
+        auth()->user()->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Successfully Deleted out',
+        ]);
+    }
 }

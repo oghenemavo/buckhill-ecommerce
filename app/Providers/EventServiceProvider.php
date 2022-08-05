@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Events\LoginUser;
 use App\Listeners\UpdateUserLastLogin;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,7 +22,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         LoginUser::class => [
             UpdateUserLastLogin::class,
-        ]
+        ],
     ];
 
     /**
