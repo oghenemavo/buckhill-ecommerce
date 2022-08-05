@@ -24,18 +24,19 @@ class UserPutRequest extends FormRequest
      */
     public function rules()
     {
+        $rule = ['required', 'string', 'email', 'max:255'];
+        if ($uuid = request()->uuid) {
+            $rule[] = Rule::unique('users')->ignore($uuid, 'uuid');
+        } else {
+            $rule[] = Rule::unique('users')->ignore(auth()->user()->id);
+        }
+
         return [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'phone_number' => 'required|string|max:255',
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique('users')->ignore(auth()->user()->id),
-            ],
+            'email' => $rule,
         ];
     }
 }
