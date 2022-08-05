@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LoginUser;
 use App\Http\Requests\UserPostRequest;
 use App\Http\Requests\UserPutRequest;
 use App\Interfaces\IUserRepository;
@@ -82,6 +83,7 @@ class UserController extends Controller
         }
 
         $user = Auth::user();
+        event(new LoginUser($user));
 
         return response()->json([
             'status' => true,
