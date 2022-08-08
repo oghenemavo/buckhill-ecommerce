@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,4 +47,6 @@ Route::prefix('v1')->group(function () {
             Route::delete('user-delete/{uuid}', 'delete');
         });
     });
+
+    Route::apiResource('categories', CategoryController::class);
 });

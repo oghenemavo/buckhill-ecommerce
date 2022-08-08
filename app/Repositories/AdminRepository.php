@@ -41,8 +41,6 @@ class AdminRepository implements IAdminRepository
             'address' => data_get($attributes, 'address', $user->address),
             'email' => data_get($user->email, 'email', $user->email),
         ]);
-
-        return $user;
     }
 
     public function deleteUser($uuid)

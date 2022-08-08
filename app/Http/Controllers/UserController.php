@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 use App\Events\LoginUser;
 use App\Http\Requests\UserPostRequest;
 use App\Http\Requests\UserPutRequest;
-use App\Interfaces\IUserRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    protected IUserRepository $_userRepository;
-
-    public function __construct(IUserRepository $userRepository)
+    /**
+     * Create a new controller instance.
+     *
+     * @param  \App\Repositories\UserRepository  $userRepository
+     * @return void
+     */
+    public function __construct(protected UserRepository $userRepository)
     {
         $this->middleware('auth:api')->except(['login', 'create']);
-        $this->_userRepository = $userRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function index()
@@ -33,7 +37,7 @@ class UserController extends Controller
 
     public function create(UserPostRequest $request)
     {
-        $user = $this->_userRepository->createUser($request->all());
+        $user = $this->userRepository->createUser($request->all());
 
         if ($user) {
             return response()->json([
@@ -51,7 +55,7 @@ class UserController extends Controller
 
     public function edit(UserPutRequest $request)
     {
-        $user = $this->_userRepository->updateUser($request->all(), auth()->user());
+        $user = $this->userRepository->updateUser($request->all(), auth()->user());
 
         if ($user) {
             return response()->json([

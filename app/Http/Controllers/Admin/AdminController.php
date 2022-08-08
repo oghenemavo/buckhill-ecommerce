@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Events\LoginUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserPostRequest;
-use App\Interfaces\IAdminRepository;
+use App\Repositories\AdminRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +14,7 @@ class AdminController extends Controller
 {
     private static $is_admin = 1;
 
-    public function __construct(protected IAdminRepository $adminRepository)
+    public function __construct(protected AdminRepository $adminRepository)
     {
         $this->adminRepository = $adminRepository;
     }

@@ -2,84 +2,114 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
+use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Repositories\CategoryRepository  $categoryRepository
+     * @return void
      */
-    public function index()
+    public function __construct(protected CategoryRepository $categoryRepository)
     {
-        //
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function index()
     {
-        //
+        $categories = $this->categoryRepository->fetchCategories();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Categories Retrieved Successfully',
+            'data' => $categories,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\CategoryRequest  $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $category = $this->categoryRepository->add($request->validated());
+        if ($category) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Category created successfully',
+                'data' => $category,
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Unable to create Category',
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param  string  $uuid
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Category $category)
+    public function show($uuid)
     {
-        //
-    }
+        $category = $this->categoryRepository->fetchCategory($uuid);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
+        return response()->json([
+            'status' => true,
+            'message' => 'Category Retrieved Successfully',
+            'data' => $category,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\CategoryRequest  $request
+     * @param  string  $uuid
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, $uuid)
     {
-        //
+        $category = $this->categoryRepository->updateCategory($uuid, $request->validated());
+        if ($category) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Category updated successfully',
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Unable to update Category',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param  string  $uuid
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Category $category)
+    public function destroy($uuid)
     {
-        //
+        $this->categoryRepository->delete($uuid);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Category deleted successfully',
+        ]);
     }
 }
