@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Interfaces\IAdminRepository;
+use App\Interfaces\IBrandRepository;
 use App\Interfaces\ICategoryRepository;
 use App\Interfaces\IProductRepository;
 use App\Interfaces\IUserRepository;
 use App\Repositories\AdminRepository;
+use App\Repositories\BrandRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\UserRepository;
@@ -25,6 +27,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IAdminRepository::class, AdminRepository::class);
         $this->app->bind(ICategoryRepository::class, CategoryRepository::class);
         $this->app->bind(IProductRepository::class, ProductRepository::class);
+        $this->app->bind(IBrandRepository::class, BrandRepository::class);
     }
 
     /**

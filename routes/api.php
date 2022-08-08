@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -49,6 +50,8 @@ Route::prefix('v1')->group(function () {
             Route::delete('user-delete/{uuid}', 'delete');
         });
     });
+
+    Route::post('files', [FileController::class, 'store']);
 
     Route::apiResource('products', ProductController::class);
     Route::apiResource('categories', CategoryController::class);
