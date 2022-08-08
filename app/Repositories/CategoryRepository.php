@@ -19,11 +19,9 @@ class CategoryRepository implements ICategoryRepository
 
     public function add(array $attributes)
     {
-        $categoryObject = $this->category->create([
+        return $this->category->create([
             'title' => data_get($attributes, 'title'),
         ]);
-
-        return $categoryObject;
     }
 
     public function fetchCategory($uuid)
@@ -33,17 +31,17 @@ class CategoryRepository implements ICategoryRepository
 
     public function updateCategory($uuid, array $attributes)
     {
-        $categoryObject = Category::query()->where('uuid', $uuid)->firstOrFail();
+        $this->category->query()->where('uuid', $uuid)->firstOrFail();
 
-        return $categoryObject->update([
-            'title' => data_get($attributes, 'title', $categoryObject->title),
+        return $this->category->update([
+            'title' => data_get($attributes, 'title', $this->category->title),
         ]);
     }
 
     public function delete($uuid)
     {
-        $category = Category::query()->where('uuid', $uuid)->firstOrFail();
+        $this->category->query()->where('uuid', $uuid)->firstOrFail();
 
-        return $category->delete();
+        return $this->category->delete();
     }
 }

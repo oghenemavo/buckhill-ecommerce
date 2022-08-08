@@ -26,7 +26,8 @@ class UserPutRequest extends FormRequest
     {
         $rule = ['required', 'string', 'email', 'max:255'];
         // check admin is making an edit request or user
-        if ($uuid = request()->uuid) {
+        $uuid = request()->uuid;
+        if ($uuid) {
             $rule[] = Rule::unique('users')->ignore($uuid, 'uuid');
         } else {
             $rule[] = Rule::unique('users')->ignore(auth()->user()->id);

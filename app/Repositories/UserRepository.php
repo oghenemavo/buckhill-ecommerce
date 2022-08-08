@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements IUserRepository
 {
+    public function __construct(protected User $user)
+    {
+        $this->user = $user;
+    }
+
     public function createUser(array $attributes)
     {
-        $user = User::create([
+        return $this->user->create([
             'first_name' => data_get($attributes, 'first_name'),
             'last_name' => data_get($attributes, 'last_name'),
             'phone_number' => data_get($attributes, 'phone_number'),
@@ -18,13 +23,11 @@ class UserRepository implements IUserRepository
             'email' => data_get($attributes, 'email'),
             'password' => Hash::make(data_get($attributes, 'password')),
         ]);
-
-        return $user;
     }
 
     public function updateUser(array $attributes, User $user)
     {
-        return $user->update([
+        return $this->user->update([
             'first_name' => data_get($attributes, 'first_name', $user->first_name),
             'last_name' => data_get($attributes, 'last_name', $user->last_name),
             'phone_number' => data_get($attributes, 'phone_number', $user->phone_number),
