@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->char('uuid', 36)->unique();
             $table->string('name')->unique();
-            $table->string('path')->unique();
-            $table->string('size')->unique();
-            $table->string('type')->unique();
+            $table->string('path');
+            $table->string('size');
+            $table->string('type');
             $table->timestamps();
         });
     }

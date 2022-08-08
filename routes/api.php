@@ -52,6 +52,7 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::post('files', [FileController::class, 'store']);
+    Route::post('files/{uuid}', [FileController::class, 'download']);
 
     Route::apiResource('products', ProductController::class);
     Route::apiResource('categories', CategoryController::class);

@@ -15,7 +15,7 @@ class FileRepository implements IFileRepository
 
     public function add(array $attributes)
     {
-        $fileInfo = $this->store($attributes['image'], 'abc', false);
+        $fileInfo = $this->store($attributes['image'], 'files', false);
 
         return $this->file->create([
             'path' => data_get($fileInfo, 'path'),
@@ -23,6 +23,11 @@ class FileRepository implements IFileRepository
             'type' => data_get($fileInfo, 'mime'),
             'size' => data_get($fileInfo, 'size'),
         ]);
+    }
+
+    public function fetchFile($uuid)
+    {
+        return $this->file->query()->where('uuid', $uuid)->firstOrFail();
     }
 
     /**
@@ -39,7 +44,7 @@ class FileRepository implements IFileRepository
             $path          = $uploadedFile->store($store_path, 'public');
             $file = (object) [
                 'path' => $path,
-                'original_name' => $uploadedFile->getClientOriginalName(),
+                'original_name' => $uploadedFile->hashName(),
                 'mime' => $uploadedFile->getClientMimeType(),
                 'size' => $uploadedFile->getSize(),
             ];
