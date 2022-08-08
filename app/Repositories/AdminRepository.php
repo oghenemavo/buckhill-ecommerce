@@ -33,21 +33,21 @@ class AdminRepository implements IAdminRepository
 
     public function updateUser(array $attributes, $uuid)
     {
-        $this->user->query()->where('uuid', $uuid)->firstOrFail();
+        $userObject = $this->user->query()->where('uuid', $uuid)->firstOrFail();
 
-        return $this->user->update([
-            'first_name' => data_get($attributes, 'first_name', $this->user->first_name),
-            'last_name' => data_get($attributes, 'last_name', $this->user->last_name),
-            'phone_number' => data_get($attributes, 'phone_number', $this->user->phone_number),
-            'address' => data_get($attributes, 'address', $this->user->address),
-            'email' => data_get($attributes, 'email', $this->user->email),
+        return $userObject->update([
+            'first_name' => data_get($attributes, 'first_name', $userObject->first_name),
+            'last_name' => data_get($attributes, 'last_name', $userObject->last_name),
+            'phone_number' => data_get($attributes, 'phone_number', $userObject->phone_number),
+            'address' => data_get($attributes, 'address', $userObject->address),
+            'email' => data_get($attributes, 'email', $userObject->email),
         ]);
     }
 
     public function deleteUser($uuid)
     {
-        $this->user->query()->where('uuid', $uuid)->firstOrFail();
+        $userObject = $this->user->query()->where('uuid', $uuid)->firstOrFail();
 
-        return $this->user->delete();
+        return $userObject->delete();
     }
 }

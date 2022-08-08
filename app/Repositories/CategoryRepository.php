@@ -31,17 +31,17 @@ class CategoryRepository implements ICategoryRepository
 
     public function updateCategory($uuid, array $attributes)
     {
-        $this->category->query()->where('uuid', $uuid)->firstOrFail();
+        $categoryObject = $this->category->query()->where('uuid', $uuid)->firstOrFail();
 
-        return $this->category->update([
-            'title' => data_get($attributes, 'title', $this->category->title),
+        return $categoryObject->update([
+            'title' => data_get($attributes, 'title', $categoryObject->title),
         ]);
     }
 
     public function delete($uuid)
     {
-        $this->category->query()->where('uuid', $uuid)->firstOrFail();
+        $categoryObject = $this->category->query()->where('uuid', $uuid)->firstOrFail();
 
-        return $this->category->delete();
+        return $categoryObject->delete();
     }
 }

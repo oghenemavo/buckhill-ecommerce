@@ -10,7 +10,7 @@ interface ICategoryRepository
 
     public function fetchCategory(string $uuid);
 
-    public function updateCategory(string $uuid, array $userBody);
+    public function updateCategory(string $uuid, array $categoryBody);
 
     public function delete(string $uuid);
 }
