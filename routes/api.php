@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -51,4 +52,5 @@ Route::prefix('v1')->group(function () {
 
     Route::apiResource('products', ProductController::class);
     Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('brands', BrandController::class);
 });
