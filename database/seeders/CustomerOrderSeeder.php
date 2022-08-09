@@ -7,7 +7,6 @@ use App\Models\Payment;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CustomerOrderSeeder extends Seeder
@@ -22,8 +21,7 @@ class CustomerOrderSeeder extends Seeder
         $products = Product::query()->get();
         $orderStatuses = OrderStatus::query()->get();
 
-        
-        User::query()->inRandomOrder()->get()->map(function($user) use($products, $orderStatuses) {
+        User::query()->inRandomOrder()->get()->map(function ($user) use ($products, $orderStatuses) {
             $paymentTypes = [
                 'credit_card',
                 'cash_on_delivery',
@@ -38,12 +36,12 @@ class CustomerOrderSeeder extends Seeder
             $cashPayment = [
                 'first_name' => fake()->firstName(),
                 'last_name' => fake()->lastName(),
-                'address' => fake()->address()
+                'address' => fake()->address(),
             ];
             $bankPayment = [
                 'swift' => fake()->swiftBicNumber(),
                 'iban' => fake()->iban(),
-                'name' => fake()->name()
+                'name' => fake()->name(),
             ];
 
             $itemsArray = [];
@@ -54,21 +52,22 @@ class CustomerOrderSeeder extends Seeder
                 'billing' => fake()->address(),
                 'shipping' => fake()->address(),
             ];
-            
-            for ($i=1; $i < $productAcquired; $i++) {
+
+            for ($i = 1; $i < $productAcquired; $i++) {
                 $product = $products->random();
                 $quantity = random_int(1, 20);
 
-                if (empty($product)) continue;
+                if (empty($product)) {
+                    continue;
+                }
 
                 $itemsArray[$i] = [
                     'product' => $product->uuid,
-                    'quantity' => $quantity
+                    'quantity' => $quantity,
                 ];
                 $amount += $quantity * $product->price;
             }
 
-            
             $paymentType = $paymentTypes[array_rand($paymentTypes)];
             $paymentDetails = [];
             switch ($paymentType) {
@@ -90,7 +89,7 @@ class CustomerOrderSeeder extends Seeder
                 'details' => $paymentDetails,
             ]);
 
-            if (!empty($itemsArray)) {
+            if (! empty($itemsArray)) {
                 $user->orders()->create([
                     'user_id' => $user->id,
                     'order_status_id' => $orderStatus->id,
@@ -99,12 +98,11 @@ class CustomerOrderSeeder extends Seeder
                     'address' => json_encode($address),
                     'delivery_fee' => $this->delivery_charges($amount),
                     'amount' => $amount,
-                    'shipped_at' => random_int(0, 1) ? Carbon::now() : null,
+                    'shipped_at' => $orderStatus->title == 'shipped' ? Carbon::now() : null,
                 ]);
             }
 
             // delete payment that doesn't have product
-
 
             // $user->orders()->
         });

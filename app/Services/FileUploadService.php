@@ -11,7 +11,7 @@ class FileUploadService
      * Store media and return path
      *
      * @param  UploadedFile  $uploadedFile
-     * @param  string $store_path
+     * @param  string  $store_path
      * @param  bool  $get_path_only
      * @return object|string
      */

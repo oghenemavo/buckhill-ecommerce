@@ -3,10 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\OrderStatus;
-use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class OrderStatusSeeder extends Seeder
 {
@@ -25,6 +22,5 @@ class OrderStatusSeeder extends Seeder
             ['title' => 'cancelled'],
         )
         ->create();
-
     }
 }
