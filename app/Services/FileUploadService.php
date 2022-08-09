@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Http\UploadedFile;
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
 
 class FileUploadService
@@ -9,12 +10,12 @@ class FileUploadService
     /**
      * Store media and return path
      *
-     * @param  UploadedFile|UploadedFile[]|null  $uploadedFile
-     * @param $store_path
+     * @param  UploadedFile  $uploadedFile
+     * @param  string $store_path
      * @param  bool  $get_path_only
-     * @return array|string|null
+     * @return object|string
      */
-    public function store($uploadedFile, $store_path = '', $get_path_only = true)
+    public function store(UploadedFile $uploadedFile, $store_path = '', $get_path_only = true)
     {
         if ($uploadedFile->isValid()) {
             $path = $uploadedFile->store($store_path, 'public');

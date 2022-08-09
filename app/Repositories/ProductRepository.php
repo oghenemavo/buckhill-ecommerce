@@ -38,11 +38,11 @@ class ProductRepository implements IProductRepository
         $productObject = $this->product->query()->where('uuid', $uuid)->firstOrFail();
 
         return $productObject->update([
-            'category_uuid' => data_get($attributes, 'category_uuid', $productObject->category_uuid),
-            'title' => data_get($attributes, 'title', $productObject->title),
-            'price' => data_get($attributes, 'price', $productObject->price),
-            'description' => data_get($attributes, 'description', $productObject->description),
-            'metadata' => json_encode(data_get($attributes, 'metadata', $productObject->metadata)),
+            'category_uuid' => data_get($attributes, 'category_uuid', optional($productObject)->category_uuid),
+            'title' => data_get($attributes, 'title', optional($productObject)->title),
+            'price' => data_get($attributes, 'price', optional($productObject)->price),
+            'description' => data_get($attributes, 'description', optional($productObject)->description),
+            'metadata' => json_encode(data_get($attributes, 'metadata', optional($productObject)->metadata)),
         ]);
     }
 

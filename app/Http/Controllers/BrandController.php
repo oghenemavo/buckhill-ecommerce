@@ -77,11 +77,11 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\brandRequest  $request
+     * @param  \App\Http\Requests\BrandRequest  $request
      * @param  string  $uuid
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(brandRequest $request, $uuid)
+    public function update(BrandRequest $request, $uuid)
     {
         $brand = $this->brandRepository->updateBrand($uuid, $request->validated());
         if ($brand) {

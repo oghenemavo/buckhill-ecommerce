@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FileRequest;
 use App\Repositories\FileRepository;
 use App\Services\FileUploadService;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
@@ -33,7 +31,7 @@ class FileController extends Controller
     {
         $fileObject = $this->fileService->store($request->validated()['image'], '', false);
 
-        if (isset($fileObject)) {
+        if (is_object($fileObject)) {
             $file = $this->fileRepository->add($fileObject);
             if ($file) {
                 return response()->json([
@@ -54,14 +52,13 @@ class FileController extends Controller
      * download file
      *
      * @param  string  $uuid
-     * @return \Illuminate\Auth\Access\Response
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     public function download($uuid)
     {
         $fileObject = $this->fileRepository->fetchFile($uuid);
         $filename = explode('.', $fileObject->name)[0];
 
-        return response()->download(public_path('storage/' . $fileObject->path), $filename);
-  
+        return response()->download(public_path('storage/'.$fileObject->path), $filename);
     }
 }

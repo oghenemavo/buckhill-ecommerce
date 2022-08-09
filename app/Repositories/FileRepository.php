@@ -26,5 +26,4 @@ class FileRepository implements IFileRepository
     {
         return $this->file->query()->where('uuid', $uuid)->firstOrFail();
     }
-    
 }
