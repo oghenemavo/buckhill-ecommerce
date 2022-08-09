@@ -21,10 +21,10 @@ return new class extends Migration
             $table->char('uuid', 36)->unique();
             $table->json('products');
             $table->json('address');
-            $table->decimal('delivery_fee', 11, 2);
+            $table->decimal('delivery_fee', 11, 2)->nullable();
             $table->decimal('amount', 11, 2);
             $table->timestamps();
-            $table->dateTime('shipped_at');
+            $table->dateTime('shipped_at')->nullable();
         });
     }
 

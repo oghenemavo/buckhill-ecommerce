@@ -6,6 +6,8 @@ namespace App\Models;
 
 use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -52,6 +54,11 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
