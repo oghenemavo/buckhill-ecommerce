@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FileRequest;
 use App\Repositories\FileRepository;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
@@ -15,9 +17,10 @@ class FileController extends Controller
      * @param  \App\Repositories\FileRepository  $fileRepository
      * @return void
      */
-    public function __construct(protected FileRepository $fileRepository)
+    public function __construct(protected FileRepository $fileRepository, protected FileUploadService $fileService)
     {
         $this->fileRepository = $fileRepository;
+        $this->fileService = $fileService;
     }
 
     /**
@@ -28,33 +31,37 @@ class FileController extends Controller
      */
     public function store(FileRequest $request)
     {
-        $file = $this->fileRepository->add($request->validated());
-        if ($file) {
-            return response()->json([
-                'status' => true,
-                'message' => 'File created successfully',
-                'data' => $file,
-            ]);
+        $fileObject = $this->fileService->store($request->validated()['image'], '', false);
+
+        if (isset($fileObject)) {
+            $file = $this->fileRepository->add($fileObject);
+            if ($file) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'File stored successfully',
+                    'data' => $file,
+                ]);
+            }
         }
 
         return response()->json([
             'status' => false,
-            'message' => 'Unable to file Category',
+            'message' => 'Unable to store File',
         ]);
     }
 
     /**
      * download file
-     * 
-     * @param \Illuminate\Http\Request  $request
      *
+     * @param  string  $uuid
      * @return \Illuminate\Auth\Access\Response
      */
-    public function download(Request $request, $uuid)
+    public function download($uuid)
     {
         $fileObject = $this->fileRepository->fetchFile($uuid);
-        return Storage::download($fileObject->path);
-    }
+        $filename = explode('.', $fileObject->name)[0];
 
-    
+        return response()->download(public_path('storage/' . $fileObject->path), $filename);
+  
+    }
 }
