@@ -6,12 +6,14 @@ use App\Interfaces\IAdminRepository;
 use App\Interfaces\IBrandRepository;
 use App\Interfaces\ICategoryRepository;
 use App\Interfaces\IOrderStatusRepository;
+use App\Interfaces\IPaymentRepository;
 use App\Interfaces\IProductRepository;
 use App\Interfaces\IUserRepository;
 use App\Repositories\AdminRepository;
 use App\Repositories\BrandRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\OrderStatusRepository;
+use App\Repositories\PaymentRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +33,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IProductRepository::class, ProductRepository::class);
         $this->app->bind(IBrandRepository::class, BrandRepository::class);
         $this->app->bind(IOrderStatusRepository::class, OrderStatusRepository::class);
+        $this->app->bind(IPaymentRepository::class, PaymentRepository::class);
     }
 
     /**
