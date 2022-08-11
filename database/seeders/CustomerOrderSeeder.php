@@ -7,7 +7,6 @@ use App\Models\OrderStatus;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -41,7 +40,7 @@ class CustomerOrderSeeder extends Seeder
 
                     $itemsArray[$i] = [
                         'product' => $product->uuid,
-                        'quantity' => $quantity,
+                        'quantity' => (string) $quantity,
                     ];
                     $amount += $quantity * $product->price;
                 }
@@ -58,14 +57,14 @@ class CustomerOrderSeeder extends Seeder
 
                 if (! empty($itemsArray)) {
                     $user->orders()->create([
-                        'user_id' => $user->id,
-                        'order_status_id' => $orderStatus->id,
-                        'payment_id' => $payment->id,
+                        'user_id' => (string) $user->id,
+                        'order_status_id' => (string) $orderStatus->id,
+                        'payment_id' => (string) $payment->id,
                         'products' => json_encode($itemsArray),
                         'address' => json_encode($this->generateAddress()),
-                        'delivery_fee' => $this->delivery_charges($amount),
+                        'delivery_fee' => deliveryCharges($amount),
                         'amount' => $amount,
-                        'shipped_at' => $this->shippedAt($orderStatus->title),
+                        'shipped_at' => shippedAt($orderStatus->title),
                     ]);
 
                     DB::commit();
@@ -78,11 +77,6 @@ class CustomerOrderSeeder extends Seeder
             DB::rollBack();
             echo $ex->getMessage();
         }
-    }
-
-    protected function shippedAt($status)
-    {
-        return $status == 'shipped' ? Carbon::now() : null;
     }
 
     protected function generatePaymentDetails(string $type): string|false
@@ -139,10 +133,5 @@ class CustomerOrderSeeder extends Seeder
             'iban' => fake()->iban(),
             'name' => fake()->name(),
         ];
-    }
-
-    protected function delivery_charges(float $amount)
-    {
-        return $amount > 500 ? 15.00 : null;
     }
 }

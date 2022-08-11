@@ -23,4 +23,16 @@ class Product extends Model
         'description',
         'metadata',
     ];
+
+    /**
+     * Scope a query to only include products of a given uuid.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $uuid
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUuid($query, $uuid)
+    {
+        return $query->where('uuid', $uuid);
+    }
 }

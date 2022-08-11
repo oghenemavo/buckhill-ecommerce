@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -61,4 +62,5 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('brands', BrandController::class);
     Route::apiResource('order-statuses', OrderStatusController::class);
     Route::apiResource('payments', PaymentController::class);
+    Route::apiResource('orders', OrderController::class);
 });
