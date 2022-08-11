@@ -12,9 +12,9 @@ class PaymentRepository implements IPaymentRepository
         $this->payment = $payment;
     }
 
-    public function fetchPayments()
+    public function fetchPayments(array $attributes)
     {
-        return $this->payment->query()->get();
+        return generatePaginationQuery($this->payment, $attributes);
     }
 
     public function add(array $attributes)

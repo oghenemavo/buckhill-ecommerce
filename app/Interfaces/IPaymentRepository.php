@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 interface IPaymentRepository
 {
-    public function fetchPayments();
+    public function fetchPayments(array $getAttributes);
 
     public function add(array $paymentBody);
 

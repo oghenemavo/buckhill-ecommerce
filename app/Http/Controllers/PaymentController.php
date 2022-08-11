@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaginationRequest;
 use App\Http\Requests\PaymentRequest;
 use App\Repositories\PaymentRepository;
 
@@ -21,11 +22,12 @@ class PaymentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Http\Requests\PaginationRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(PaginationRequest $request)
     {
-        $payments = $this->paymentRepository->fetchPayments();
+        $payments = $this->paymentRepository->fetchPayments($request->validated());
 
         return response()->json([
             'status' => true,

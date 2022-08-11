@@ -6,7 +6,7 @@ interface IAdminRepository
 {
     public function createAdmin(array $adminBody);
 
-    public function fetchUsers();
+    public function fetchUsers(array $getAttributes);
 
     public function updateUser(array $adminBody, string $uuid);
 

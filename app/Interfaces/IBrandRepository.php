@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 interface IBrandRepository
 {
-    public function fetchBrands();
+    public function fetchBrands(array $getAttributes);
 
     public function add(array $brandBody);
 

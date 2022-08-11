@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BrandRequest;
+use App\Http\Requests\PaginationRequest;
 use App\Repositories\BrandRepository;
 
 class BrandController extends Controller
@@ -21,11 +22,12 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Http\Requests\PaginationRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(PaginationRequest $request)
     {
-        $brands = $this->brandRepository->fetchBrands();
+        $brands = $this->brandRepository->fetchBrands($request->validated());
 
         return response()->json([
             'status' => true,

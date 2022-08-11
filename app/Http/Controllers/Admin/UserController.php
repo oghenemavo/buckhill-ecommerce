@@ -3,19 +3,32 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PaginationRequest;
 use App\Http\Requests\UserPutRequest;
-use App\Interfaces\IAdminRepository;
+use App\Repositories\AdminRepository;
 
 class UserController extends Controller
 {
-    public function __construct(protected IAdminRepository $adminRepository)
+    /**
+     * Create a new controller instance.
+     *
+     * @param  \App\Repositories\AdminRepository  $adminRepository
+     * @return void
+     */
+    public function __construct(protected AdminRepository $adminRepository)
     {
         $this->adminRepository = $adminRepository;
     }
 
-    public function allUsers()
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \App\Http\Requests\PaginationRequest  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function allUsers(PaginationRequest $request)
     {
-        $users = $this->adminRepository->fetchUsers();
+        $users = $this->adminRepository->fetchUsers($request->validated());
 
         return response()->json([
             'status' => true,
@@ -24,6 +37,13 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UserPutRequest  $request
+     * @param  string  $uuid
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function editUser(UserPutRequest $request, $uuid)
     {
         $user = $this->adminRepository->updateUser($request->all(), $uuid);
@@ -41,6 +61,12 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $uuid
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete($uuid)
     {
         $this->adminRepository->deleteUser($uuid);

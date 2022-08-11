@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderStatusRequest;
+use App\Http\Requests\PaginationRequest;
 use App\Repositories\OrderStatusRepository;
 
 class OrderStatusController extends Controller
@@ -21,11 +22,12 @@ class OrderStatusController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Http\Requests\PaginationRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(PaginationRequest $request)
     {
-        $orderStatuses = $this->orderStatusRepository->fetchOrderStatuses();
+        $orderStatuses = $this->orderStatusRepository->fetchOrderStatuses($request->validated());
 
         return response()->json([
             'status' => true,

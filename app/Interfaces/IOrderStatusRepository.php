@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 interface IOrderStatusRepository
 {
-    public function fetchOrderStatuses();
+    public function fetchOrderStatuses(array $getAttributes);
 
     public function add(array $statusBody);
 
