@@ -14,7 +14,7 @@
    </head>
    <body>
       <p style="padding-top: 3pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">PetShop</p>
-      <h1 style="padding-top: 3pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">Date: <span class="p">{{ $order->created_at }}</span></h1>
+      <h1 style="padding-top: 3pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">Date: <span class="p">{{ $order->created_at->format('Y-m-d') }}</span></h1>
       <h1 style="padding-left: 6pt;text-indent: 0pt;text-align: left;">Invoice #: <span class="p">{{ $order->uuid }}</span></h1>
       <p style="text-indent: 0pt;text-align: left;"><br/></p>
       <p style="text-indent: 0pt;text-align: left;"><br/></p>

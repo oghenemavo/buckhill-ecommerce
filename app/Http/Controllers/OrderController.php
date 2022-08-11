@@ -53,11 +53,6 @@ class OrderController extends Controller
         $address = json_decode($order->address);
 
         $user = User::query()->find($order->user_id);
-        // var_dump($payment);
-        // var_dump(getProduct($products->{'1'}->product)->title);
-        // var_dump($paymentDetails);
-        // exit;
-        
 
         view()->share('order',$order);
         view()->share('products',$products);
@@ -69,7 +64,7 @@ class OrderController extends Controller
         view()->share('user',$user);
         $pdf = PDF::loadView('pdf/order');
         
-        return $pdf->download('disney.pdf');
+        return $pdf->download('order_' . $order->uuid . '.pdf');
     }
 
     public function shipmentLocator(PaginationRequest $request)
