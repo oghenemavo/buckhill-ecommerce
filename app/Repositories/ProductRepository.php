@@ -14,7 +14,8 @@ class ProductRepository implements IProductRepository
 
     public function fetchProducts(array $attributes)
     {
-        return generatePaginationQuery($this->product, $attributes);
+        $query = $this->product->query();
+        return generatePaginationQuery($query, $attributes);
     }
 
     public function add(array $attributes)

@@ -28,7 +28,8 @@ class AdminRepository implements IAdminRepository
 
     public function fetchUsers(array $attributes)
     {
-        return generatePaginationQuery($this->brand, $attributes);
+        $query = $this->user->query();
+        return generatePaginationQuery($query, $attributes);
         // return $this->user->query()->where('is_admin', '0')->get();
     }
 

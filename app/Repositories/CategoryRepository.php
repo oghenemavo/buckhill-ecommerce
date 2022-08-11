@@ -14,7 +14,8 @@ class CategoryRepository implements ICategoryRepository
 
     public function fetchCategories(array $attributes)
     {
-        return generatePaginationQuery($this->category, $attributes);
+        $query = $this->category->query();
+        return generatePaginationQuery($query, $attributes);
     }
 
     public function add(array $attributes)

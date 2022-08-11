@@ -14,7 +14,8 @@ class BrandRepository implements IBrandRepository
 
     public function fetchBrands(array $attributes)
     {
-        return generatePaginationQuery($this->brand, $attributes);
+        $query = $this->brand->query();
+        return generatePaginationQuery($query, $attributes);
     }
 
     public function add(array $attributes)

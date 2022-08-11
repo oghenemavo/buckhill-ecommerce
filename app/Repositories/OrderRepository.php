@@ -16,7 +16,8 @@ class OrderRepository implements IOrderRepository
 
     public function fetchOrders(array $attributes)
     {
-        return generatePaginationQuery($this->order, $attributes);
+        $query = $this->order->query();
+        return generatePaginationQuery($query, $attributes);
     }
 
     public function add(array $attributes)

@@ -62,5 +62,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('brands', BrandController::class);
     Route::apiResource('order-statuses', OrderStatusController::class);
     Route::apiResource('payments', PaymentController::class);
+
+    Route::get('/orders/dashboard', [OrderController::class, 'index']);
     Route::apiResource('orders', OrderController::class);
 });
