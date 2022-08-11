@@ -31,6 +31,8 @@ class PaginationRequest extends FormRequest
             'date_range_from' => 'nullable|date',
             'date_range_to' => 'nullable|date',
             'fix_range' => 'nullable|string|in:today,monthly,yearly',
+            'order_uuid' => 'nullable|uuid',
+            'customer_id' => 'nullable|integer',
         ];
     }
 }

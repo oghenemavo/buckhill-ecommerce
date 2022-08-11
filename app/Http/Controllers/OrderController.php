@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\PaginationRequest;
+use App\Models\Payment;
+use App\Models\User;
 use App\Repositories\OrderRepository;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -27,12 +30,56 @@ class OrderController extends Controller
      */
     public function index(PaginationRequest $request)
     {
-        $order = $this->orderRepository->fetchOrders($request->validated());
+        $orders = $this->orderRepository->fetchOrders($request->validated());
 
         return response()->json([
             'status' => true,
             'message' => 'Orders Retrieved Successfully',
-            'data' => $order,
+            'data' => $orders,
+        ]);
+    }
+
+    public function download($uuid)
+    {
+        $order = $this->orderRepository->fetchOrder($uuid);
+
+        $products = json_decode($order->products);
+        
+        $payment = Payment::query()->find($order->payment_id);
+        $paymentType = $payment->type;
+        $paymentDetails = array_values(json_decode($payment->details, true));
+
+        $address = json_decode($order->address);
+        $address = json_decode($order->address);
+
+        $user = User::query()->find($order->user_id);
+        // var_dump($payment);
+        // var_dump(getProduct($products->{'1'}->product)->title);
+        // var_dump($paymentDetails);
+        // exit;
+        
+
+        view()->share('order',$order);
+        view()->share('products',$products);
+        view()->share('payment',$payment);
+        view()->share('paymentType',$paymentType);
+        view()->share('paymentDetails',$paymentDetails);
+        view()->share('address',$address);
+        view()->share('address',$address);
+        view()->share('user',$user);
+        $pdf = PDF::loadView('pdf/order');
+        
+        return $pdf->download('disney.pdf');
+    }
+
+    public function shipmentLocator(PaginationRequest $request)
+    {
+        $orders = $this->orderRepository->fetchOrdersByShipment($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Orders Retrieved Successfully',
+            'data' => $orders,
         ]);
     }
 

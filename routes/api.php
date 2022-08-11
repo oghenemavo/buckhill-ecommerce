@@ -63,6 +63,8 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('order-statuses', OrderStatusController::class);
     Route::apiResource('payments', PaymentController::class);
 
+    Route::get('/orders/{uuid}/download', [OrderController::class, 'download']);
     Route::get('/orders/dashboard', [OrderController::class, 'index']);
+    Route::get('/orders/shipment-locator', [OrderController::class, 'shipmentLocator']);
     Route::apiResource('orders', OrderController::class);
 });

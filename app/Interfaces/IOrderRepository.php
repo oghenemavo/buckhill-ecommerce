@@ -5,6 +5,8 @@ namespace App\Interfaces;
 interface IOrderRepository
 {
     public function fetchOrders(array $getAttributes);
+    
+    public function fetchOrdersByShipment(array $getAttributes);
 
     public function add(array $orderBody);
 

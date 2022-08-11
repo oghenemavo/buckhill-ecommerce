@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -60,5 +61,12 @@ if (! function_exists('deliveryCharges')) {
     function deliveryCharges(float $amount)
     {
         return $amount > 500 ? 15.00 : null;
+    }
+}
+
+if (! function_exists('getProduct')) {
+    function getProduct($uuid)
+    {
+        return Product::query()->uuid($uuid)->first();
     }
 }

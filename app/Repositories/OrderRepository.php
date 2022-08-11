@@ -20,6 +20,23 @@ class OrderRepository implements IOrderRepository
         return generatePaginationQuery($query, $attributes);
     }
 
+    public function fetchOrdersByShipment(array $attributes)
+    {
+        $query = $this->order->query();
+        $order_uuid = data_get($attributes, 'order_uuid');
+        $customer_id = data_get($attributes, 'customer_id');
+
+        if (!is_null($order_uuid)) {
+            $query->where('uuid', $order_uuid);
+        }
+
+        if (!is_null($customer_id)) {
+            $query->where('user_id', $customer_id);
+        }
+
+        return generatePaginationQuery($query, $attributes);
+    }
+
     public function add(array $attributes)
     {
         $orderStatusId = (string) data_get($attributes, 'order_status_id');

@@ -28,9 +28,8 @@ class AdminRepository implements IAdminRepository
 
     public function fetchUsers(array $attributes)
     {
-        $query = $this->user->query();
+        $query = $this->user->query()->where('is_admin', '0');
         return generatePaginationQuery($query, $attributes);
-        // return $this->user->query()->where('is_admin', '0')->get();
     }
 
     public function updateUser(array $attributes, $uuid)
