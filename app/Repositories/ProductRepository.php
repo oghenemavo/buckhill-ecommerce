@@ -12,9 +12,9 @@ class ProductRepository implements IProductRepository
         $this->product = $product;
     }
 
-    public function fetchProducts()
+    public function fetchProducts(array $attributes)
     {
-        return $this->product->query()->get();
+        return generatePaginationQuery($this->product, $attributes);
     }
 
     public function add(array $attributes)

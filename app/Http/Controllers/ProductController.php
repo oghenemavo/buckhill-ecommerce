@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaginationRequest;
 use App\Http\Requests\ProductRequest;
 use App\Repositories\ProductRepository;
 
@@ -21,11 +22,12 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Http\Requests\PaginationRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(PaginationRequest $request)
     {
-        $products = $this->productRepository->fetchProducts();
+        $products = $this->productRepository->fetchProducts($request->validated());
 
         return response()->json([
             'status' => true,

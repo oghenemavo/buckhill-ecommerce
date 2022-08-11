@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 interface IProductRepository
 {
-    public function fetchProducts();
+    public function fetchProducts(array $getAttributes);
 
     public function add(array $productBody);
 
