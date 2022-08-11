@@ -26,7 +26,7 @@ class PaymentRequest extends FormRequest
     {
         $details = [];
         $type = request()->type;
-        
+
         switch (PaymentType::tryFrom($type)) {
             case PaymentType::CREDIT_CARD:
                 $details['details.holder_name'] = 'required|string';
@@ -48,7 +48,7 @@ class PaymentRequest extends FormRequest
         }
         $rules = [
             'type' => 'required|string|min:3|max:255',
-            'details' => 'required|array'
+            'details' => 'required|array',
         ];
 
         return array_merge($rules, $details);

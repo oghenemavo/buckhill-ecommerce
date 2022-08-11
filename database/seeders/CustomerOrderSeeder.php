@@ -10,7 +10,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use stdClass;
 
 class CustomerOrderSeeder extends Seeder
 {
@@ -25,38 +24,38 @@ class CustomerOrderSeeder extends Seeder
             $products = Product::query()->get();
             $orderStatuses = OrderStatus::query()->get();
             $paymentTypes = PaymentType::cases();
-    
+
             User::query()->inRandomOrder()->get()->map(function ($user) use ($products, $orderStatuses, $paymentTypes) {
                 $itemsArray = [];
                 $orderStatus = $orderStatuses->random();
                 $productAcquired = random_int(1, 5);
                 $amount = (float) 0;
-    
+
                 for ($i = 1; $i < $productAcquired; $i++) {
                     $product = $products->random();
                     $quantity = random_int(1, 20);
-    
+
                     if (empty($product)) {
                         continue;
                     }
-    
+
                     $itemsArray[$i] = [
                         'product' => $product->uuid,
                         'quantity' => $quantity,
                     ];
                     $amount += $quantity * $product->price;
                 }
-    
+
                 $paymentType = $paymentTypes[array_rand($paymentTypes)]->value;
                 $paymentDetails = $this->generatePaymentDetails($paymentType);
-    
+
                 DB::beginTransaction();
 
                 $payment = Payment::create([
                     'type' => $paymentType,
                     'details' => $paymentDetails,
                 ]);
-    
+
                 if (! empty($itemsArray)) {
                     $user->orders()->create([
                         'user_id' => $user->id,
@@ -75,7 +74,6 @@ class CustomerOrderSeeder extends Seeder
                     DB::rollBack(); // if there are no items in $itemsArray then rollback the payment
                 }
             });
-            
         } catch (\Exception  $ex) {
             DB::rollBack();
             echo $ex->getMessage();
@@ -103,6 +101,7 @@ class CustomerOrderSeeder extends Seeder
                 $details = json_encode($this->generateBankTransferDetails());
                 break;
         }
+
         return $details;
     }
 

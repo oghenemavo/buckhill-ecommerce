@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\PaginationRequest;
 use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
@@ -21,11 +22,12 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Http\Requests\PaginationRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(PaginationRequest $request)
     {
-        $categories = $this->categoryRepository->fetchCategories();
+        $categories = $this->categoryRepository->fetchCategories($request->validated());
 
         return response()->json([
             'status' => true,

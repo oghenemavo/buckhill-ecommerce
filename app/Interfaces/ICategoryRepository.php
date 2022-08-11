@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 interface ICategoryRepository
 {
-    public function fetchCategories();
+    public function fetchCategories(array $attributes);
 
     public function add(array $categoryBody);
 
