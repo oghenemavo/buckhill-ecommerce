@@ -16,6 +16,7 @@ class ProductController extends Controller
      */
     public function __construct(protected ProductRepository $productRepository)
     {
+        $this->middleware(['auth:api', 'user-access:admin'])->except(['index', 'show']);
         $this->productRepository = $productRepository;
     }
 

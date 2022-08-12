@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\PaginationRequest;
 use App\Http\Resources\OrderResource;
-use App\Models\Payment;
-use App\Models\User;
 use App\Repositories\OrderRepository;
 use PDF;
 

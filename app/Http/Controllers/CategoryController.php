@@ -16,6 +16,7 @@ class CategoryController extends Controller
      */
     public function __construct(protected CategoryRepository $categoryRepository)
     {
+        $this->middleware(['auth:api', 'user-access:admin'])->except(['index', 'show']);
         $this->categoryRepository = $categoryRepository;
     }
 

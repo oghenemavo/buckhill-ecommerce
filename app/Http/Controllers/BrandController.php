@@ -16,6 +16,7 @@ class BrandController extends Controller
      */
     public function __construct(protected BrandRepository $brandRepository)
     {
+        $this->middleware(['auth:api', 'user-access:admin'])->except(['index', 'show']);
         $this->brandRepository = $brandRepository;
     }
 

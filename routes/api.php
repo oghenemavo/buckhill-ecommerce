@@ -45,26 +45,29 @@ Route::prefix('v1')->group(function () {
         Route::controller(AdminController::class)->group(function () {
             Route::post('create', 'store');
             Route::post('login', 'login');
-            Route::post('logout', 'logout')->middleware('auth:api');
+            Route::post('logout', 'logout')->middleware(['auth:api', 'user-access:admin']);
         });
-        Route::controller(AdminUserController::class)->middleware('auth:api')->group(function () {
+        Route::controller(AdminUserController::class)->middleware(['auth:api', 'user-access:admin'])->group(function () {
             Route::get('user-listing', 'allUsers');
             Route::put('user-edit/{uuid}', 'editUser');
             Route::delete('user-delete/{uuid}', 'delete');
         });
     });
-
-    Route::post('files', [FileController::class, 'store']);
+    
     Route::post('files/{uuid}', [FileController::class, 'download']);
 
     Route::apiResource('products', ProductController::class);
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('brands', BrandController::class);
     Route::apiResource('order-statuses', OrderStatusController::class);
-    Route::apiResource('payments', PaymentController::class);
+    
+    Route::middleware(['auth:api', 'user-access:admin'])->group(function() {
+        Route::post('files', [FileController::class, 'store']);
+        Route::get('/orders/{uuid}/download', [OrderController::class, 'download']);
+        Route::get('/orders/dashboard', [OrderController::class, 'index']);
+        Route::get('/orders/shipment-locator', [OrderController::class, 'shipmentLocator']);
+        Route::apiResource('orders', OrderController::class);
+        Route::apiResource('payments', PaymentController::class);
+    });
 
-    Route::get('/orders/{uuid}/download', [OrderController::class, 'download']);
-    Route::get('/orders/dashboard', [OrderController::class, 'index']);
-    Route::get('/orders/shipment-locator', [OrderController::class, 'shipmentLocator']);
-    Route::apiResource('orders', OrderController::class);
 });

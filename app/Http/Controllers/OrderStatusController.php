@@ -16,6 +16,7 @@ class OrderStatusController extends Controller
      */
     public function __construct(protected OrderStatusRepository $orderStatusRepository)
     {
+        $this->middleware(['auth:api', 'user-access:admin'])->except(['index', 'show']);
         $this->orderStatusRepository = $orderStatusRepository;
     }
 
