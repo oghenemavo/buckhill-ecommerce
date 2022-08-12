@@ -15,6 +15,7 @@ class PaymentRepository implements IPaymentRepository
     public function fetchPayments(array $attributes)
     {
         $query = $this->payment->query();
+
         return generatePaginationQuery($query, $attributes);
     }
 

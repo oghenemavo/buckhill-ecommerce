@@ -15,6 +15,7 @@ class OrderStatusRepository implements IOrderStatusRepository
     public function fetchOrderStatuses(array $attributes)
     {
         $query = $this->orderStatus->query();
+
         return generatePaginationQuery($query, $attributes);
     }
 

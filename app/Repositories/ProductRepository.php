@@ -14,7 +14,25 @@ class ProductRepository implements IProductRepository
 
     public function fetchProducts(array $attributes)
     {
+        $category = data_get($attributes, 'category');
+        $title = data_get($attributes, 'title');
+        $brand = data_get($attributes, 'brand');
+        $price = data_get($attributes, 'price');
+
+        $queryParams = ['category_uuid' => $category, 'title' => $title, 'brand' => $brand, 'price' => $price];
+
         $query = $this->product->query();
+
+        foreach ($queryParams as $key => $value) {
+            if (! is_null($value)) {
+                if ($key == 'brand') {
+                    $query->whereJsonContains('metadata->brand', $value);
+                } else {
+                    $query->where($key, $value);
+                }
+            }
+        }
+
         return generatePaginationQuery($query, $attributes);
     }
 

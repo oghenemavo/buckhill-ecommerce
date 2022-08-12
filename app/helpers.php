@@ -15,20 +15,20 @@ if (! function_exists('generatePaginationQuery')) {
         $dateRangeFrom = data_get($args, 'date_range_from');
         $dateRangeTo = data_get($args, 'date_range_to');
         $fixRange = data_get($args, 'fix_range');
-        
-        if (!is_null($dateRangeFrom) && is_null($dateRangeTo)) {
+
+        if (! is_null($dateRangeFrom) && is_null($dateRangeTo)) {
             $builder->whereDate('created_at', '>=', $dateRangeFrom);
-        } elseif (is_null($dateRangeFrom) && !is_null($dateRangeTo)) {
+        } elseif (is_null($dateRangeFrom) && ! is_null($dateRangeTo)) {
             $builder->whereDate('created_at', '<=', $dateRangeTo);
-        } elseif (!is_null($dateRangeFrom) && !is_null($dateRangeTo)) {
+        } elseif (! is_null($dateRangeFrom) && ! is_null($dateRangeTo)) {
             $builder->whereBetween('created_at', [$dateRangeFrom, $dateRangeTo]);
         }
-        
-        if (!is_null($fixRange) && strtolower($fixRange) == 'daily') {
+
+        if (! is_null($fixRange) && strtolower($fixRange) == 'daily') {
             $builder->whereDay('created_at', Carbon::now()->day);
-        } elseif (!is_null($fixRange) && strtolower($fixRange) == 'monthly') {
+        } elseif (! is_null($fixRange) && strtolower($fixRange) == 'monthly') {
             $builder->whereMonth('created_at', Carbon::now()->month);
-        } elseif (!is_null($fixRange) && strtolower($fixRange) == 'yearly') {
+        } elseif (! is_null($fixRange) && strtolower($fixRange) == 'yearly') {
             $builder->whereYear('created_at', Carbon::now()->year);
         }
 

@@ -33,6 +33,10 @@ class PaginationRequest extends FormRequest
             'fix_range' => 'nullable|string|in:today,monthly,yearly',
             'order_uuid' => 'nullable|uuid',
             'customer_id' => 'nullable|integer',
+            'category' => 'nullable|string',
+            'price' => 'nullable|numeric',
+            'title' => 'nullable|string',
+            'brand' => 'nullable|string',
         ];
     }
 }

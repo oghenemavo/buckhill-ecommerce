@@ -44,7 +44,7 @@ class OrderController extends Controller
         $order = $this->orderRepository->fetchOrder($uuid);
 
         $products = json_decode($order->products);
-        
+
         $payment = Payment::query()->find($order->payment_id);
         $paymentType = $payment->type;
         $paymentDetails = array_values(json_decode($payment->details, true));
@@ -54,17 +54,17 @@ class OrderController extends Controller
 
         $user = User::query()->find($order->user_id);
 
-        view()->share('order',$order);
-        view()->share('products',$products);
-        view()->share('payment',$payment);
-        view()->share('paymentType',$paymentType);
-        view()->share('paymentDetails',$paymentDetails);
-        view()->share('address',$address);
-        view()->share('address',$address);
-        view()->share('user',$user);
+        view()->share('order', $order);
+        view()->share('products', $products);
+        view()->share('payment', $payment);
+        view()->share('paymentType', $paymentType);
+        view()->share('paymentDetails', $paymentDetails);
+        view()->share('address', $address);
+        view()->share('address', $address);
+        view()->share('user', $user);
         $pdf = PDF::loadView('pdf/order');
-        
-        return $pdf->download('order_' . $order->uuid . '.pdf');
+
+        return $pdf->download('order_'.$order->uuid.'.pdf');
     }
 
     public function shipmentLocator(PaginationRequest $request)
