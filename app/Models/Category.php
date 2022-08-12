@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Category extends Model
@@ -33,5 +34,10 @@ class Category extends Model
         static::updating(function ($category) {
             $category->slug = Str::slug($category->title);
         });
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }

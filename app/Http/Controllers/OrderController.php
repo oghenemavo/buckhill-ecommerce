@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\PaginationRequest;
+use App\Http\Resources\OrderResource;
 use App\Models\Payment;
 use App\Models\User;
 use App\Repositories\OrderRepository;
@@ -42,24 +43,18 @@ class OrderController extends Controller
     public function download($uuid)
     {
         $order = $this->orderRepository->fetchOrder($uuid);
+        $orderResource = new OrderResource($order);
 
-        $products = json_decode($order->products);
+        $user = $orderResource->user;
+        $address = $orderResource->address;
+        $paymentType = $orderResource->payment->type;
+        $paymentDetails = $orderResource->payment->details->flatten();
+        $products = $orderResource->products;
 
-        $payment = Payment::query()->find($order->payment_id);
-        $paymentType = $payment->type;
-        $paymentDetails = array_values(json_decode($payment->details, true));
-
-        $address = json_decode($order->address);
-        $address = json_decode($order->address);
-
-        $user = User::query()->find($order->user_id);
-
-        view()->share('order', $order);
+        view()->share('orderResource', $orderResource);
         view()->share('products', $products);
-        view()->share('payment', $payment);
         view()->share('paymentType', $paymentType);
         view()->share('paymentDetails', $paymentDetails);
-        view()->share('address', $address);
         view()->share('address', $address);
         view()->share('user', $user);
         $pdf = PDF::loadView('pdf/order');
