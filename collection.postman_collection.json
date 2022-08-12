@@ -1,0 +1,1265 @@
+{
+	"info": {
+		"_postman_id": "60aa911d-cd47-4477-9b04-8a048674b7d3",
+		"name": "BuckHill Ecommerce Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "15158827"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"vicky53@example.com\",\r\n    \"password\": \"userpassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/user/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"mighty\",\r\n    \"phone_number\": \"2423876008\",\r\n    \"address\": \"1680 surulere fafunwa street\",\r\n    \"email\": \"john.mighty@demo.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/user/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Log out",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_USER_URL}}/logout"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Fetch User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "Mavi",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Onogomuho",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "345679000",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "1680 sanusi fafunwa street",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "mavi@demo.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{BASE_URL}}/user/edit"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin@buckhill.co.uk\",\r\n    \"password\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_ADMIN_URL}}/login"
+							},
+							"response": []
+						},
+						{
+							"name": "Log out",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{BASE_ADMIN_URL}}/logout"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"first_name\": \"Admin\",\r\n    \"last_name\": \"Super\",\r\n    \"phone_number\": \"2532567767\",\r\n    \"address\": \"1680 surulere fafunwa street\",\r\n    \"email\": \"admin@demo.com\",\r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_ADMIN_URL}}/create"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "User List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{BASE_ADMIN_URL}}/user-listing"
+							},
+							"response": []
+						},
+						{
+							"name": "Edit User",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "first_name",
+											"value": "stephen",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "johnson",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "john.doe@demo.com",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "europe",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "34347548402",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{BASE_ADMIN_URL}}/user-edit/99f1f140-2070-41b6-b534-8d677d92347b"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{BASE_ADMIN_URL}}/user-delete/99f1f140-2070-41b6-b534-8d677d92347b"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"order_status_id\": \"1\",\r\n    \"payment_id\": \"33\",\r\n    \"products\": [\r\n        {\r\n            \"product\": \"2e2a95dd-d3dc-4c22-b869-a48cc9641758\",\r\n            \"quantity\": \"9\"\r\n        },\r\n        {\r\n            \"product\": \"de8be618-0ccd-499a-a752-835c38d24f5d\",\r\n            \"quantity\": \"12\"\r\n        }\r\n    ],\r\n    \"address\": {\r\n        \"billing\": \"55412 Noemy Fort Lake Addisonland, TX 44330\",\r\n        \"shipping\": \"50561 Harber Summit Suite 122 New Juvenal, ID 56644-0763\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "All Orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/orders?desc=true&limit=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "sort_by",
+									"value": "title",
+									"disabled": true
+								},
+								{
+									"key": "desc",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orders Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/orders?limit=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "sort_by",
+									"value": "title",
+									"disabled": true
+								},
+								{
+									"key": "desc",
+									"value": "true",
+									"description": "boolean",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "date_range_from",
+									"value": "2020-06-10",
+									"description": "YYYY-mm-dd",
+									"disabled": true
+								},
+								{
+									"key": "date_range_to",
+									"value": "2020-07-11",
+									"description": "YYYY-mm-dd",
+									"disabled": true
+								},
+								{
+									"key": "fix_range",
+									"value": "",
+									"description": "daily,monthly,yearly",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orders Shipment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/orders/shipment-locator?order_uuid&customer_id=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders",
+								"shipment-locator"
+							],
+							"query": [
+								{
+									"key": "sort_by",
+									"value": "title",
+									"disabled": true
+								},
+								{
+									"key": "desc",
+									"value": "true",
+									"description": "boolean",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "date_range_from",
+									"value": "2020-06-10",
+									"description": "YYYY-mm-dd",
+									"disabled": true
+								},
+								{
+									"key": "date_range_to",
+									"value": "2020-07-11",
+									"description": "YYYY-mm-dd",
+									"disabled": true
+								},
+								{
+									"key": "fix_range",
+									"value": "",
+									"description": "daily,monthly,yearly",
+									"disabled": true
+								},
+								{
+									"key": "order_uuid",
+									"value": null
+								},
+								{
+									"key": "customer_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/orders/205c7db0-4934-40b7-a442-74eb23bf33f5"
+					},
+					"response": []
+				},
+				{
+					"name": "Download Order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/orders/205c7db0-4934-40b7-a442-74eb23bf33f5/download"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"order_status_id\": \"1\",\r\n    \"payment_id\": \"33\",\r\n    \"products\": [\r\n        {\r\n            \"product\": \"2e2a95dd-d3dc-4c22-b869-a48cc9641758\",\r\n            \"quantity\": \"9\"\r\n        }\r\n    ],\r\n    \"address\": {\r\n        \"billing\": \"55412 Noemy Fort Lake Addisonland, TX 44330\",\r\n        \"shipping\": \"50561 Harber Summit Suite 122 New Juvenal, ID 56644-0763\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/orders/5f023322-054b-4e44-acc1-0e272a82ea70"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/orders/5f023322-054b-4e44-acc1-0e272a82ea70"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "All Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/categories?sort_by=title&desc=true&limit=1&page=2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "sort_by",
+									"value": "title"
+								},
+								{
+									"key": "desc",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/categories/086d1a72-5301-4d7c-b830-6986ffc13ea9"
+					},
+					"response": []
+				},
+				{
+					"name": "Create catgory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Category Four\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Update catgory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Category One\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/categories/ba0d4f36-1761-4edf-9aef-be5988febd18"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/categories/86e17ff9-1646-49a0-8fcc-cbab87284f65"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "Download File",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/files/5badbe0d-7c78-405d-97f4-39736330e495"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload File",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Mavi/Downloads/WhatsApp Image 2022-07-09 at 11.30.18 AM (1).jpeg"
+								}
+							]
+						},
+						"url": "{{BASE_URL}}/files"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order Status",
+			"item": [
+				{
+					"name": "All Order Statuses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/order-statuses"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/order-statuses/50bcb342-28db-4e67-a1d4-8ba10d5c6c36"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Status Four\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/order-statuses"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Product Try\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/order-statuses/50bcb342-28db-4e67-a1d4-8ba10d5c6c36"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order Status",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/order-statuses/50bcb342-28db-4e67-a1d4-8ba10d5c6c36"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "All Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/payments"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/payments/93fa7cbd-9587-44df-b6a7-a0e39e94e3bb"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"bank_transfer\",\r\n    \"details\": {\r\n        \"swift\": \"7bfcf70a-22b4-4a69-91bc-66068d0e3af8\",\r\n        \"iban\": \"7bfcf70a-22b4-4a69-91bc-66068d0e3af8\",\r\n        \"name\": \"7bfcf70a-22b4-4a69-91bc-66068d0e3af8\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/payments"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Payment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"bank_transfer\",\r\n    \"details\": {\r\n        \"swift\": \"456VEK3MPE\",\r\n        \"iban\": \"EE452817NEXF6U6Y602G\",\r\n        \"name\": \"Aurelia Bode\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/payments/f1fbe60f-f298-4845-ab62-1f34eb543b98"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Payment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/payments/5e559643-650e-472b-938a-11affa727166"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "All Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/products?sort_by=title&category=4ccc41c5-a31d-463e-9521-055d5c2fc0a8&title=Product Four",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "sort_by",
+									"value": "title"
+								},
+								{
+									"key": "desc",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "4ccc41c5-a31d-463e-9521-055d5c2fc0a8"
+								},
+								{
+									"key": "brand",
+									"value": "7bfcf70a-22b4-4a69-91bc-66068d0e3af8",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "78",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Product Four"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/products/3b4dacd3-7def-430c-848c-66e01eeb7235"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_uuid\": \"e9bcc314-d174-45b1-9f27-aefd826cfd3d\",\r\n    \"title\": \"Product ten\",\r\n    \"price\": \"15.30\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"metadata\": {\r\n        \"brand\": \"432321d6-f7ca-402b-910f-16ae66a75d5b\",\r\n        \"image\": \"32138e90-0848-43ce-9265-42a7dfc593fd\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/products"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_uuid\": \"de19157a-73dc-4913-8360-963219176bb6\",\r\n    \"title\": \"Product Try\",\r\n    \"price\": \"600.89\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"metadata\": {\r\n        \"brand\": \"de19157a-73dc-4913-8360-963219176bb6\",\r\n        \"image\": \"de19157a-73dc-4913-8360-963219176bb6\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/products/e103c5fa-7993-4d76-90a8-331efa635389"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/products/dbc60644-9671-4e9a-9255-d4a48ab5e106"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brand",
+			"item": [
+				{
+					"name": "All Brand",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/brands"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Brand",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/brands/847922cf-bdd1-4f1a-beef-de3486677196"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Brand",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Brand Four\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/brands"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Brand",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Brand X\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/brands/847922cf-bdd1-4f1a-beef-de3486677196"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Brand",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{BASE_URL}}/brands/847922cf-bdd1-4f1a-beef-de3486677196"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3YxL3VzZXIvbG9naW4iLCJpYXQiOjE2NjAzMDU2MzcsImV4cCI6MTY2MDMwOTIzNywibmJmIjoxNjYwMzA1NjM3LCJqdGkiOiI2eEVLbmVtbDVqaGZ1MU9pIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.AdNZ-ClKCYHfzDy_xycj6FKl9WNEsnkmN564CGU67ts"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "BASE_USER_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "BASE_ADMIN_URL",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(10)
+        User::factory()->count(60)
         ->sequence(function ($sequence) {
             if ($sequence->index == '0') {
                 return [
