@@ -27,7 +27,7 @@ class UserRepository implements IUserRepository
 
     public function updateUser(array $attributes, User $user)
     {
-        return $this->user->update([
+        return $user->update([
             'first_name' => data_get($attributes, 'first_name', $user->first_name),
             'last_name' => data_get($attributes, 'last_name', $user->last_name),
             'phone_number' => data_get($attributes, 'phone_number', $user->phone_number),

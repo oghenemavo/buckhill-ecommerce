@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function edit(UserPutRequest $request)
     {
-        $user = $this->userRepository->updateUser($request->all(), auth()->user());
+        $user = $this->userRepository->updateUser($request->validated(), auth()->user());
 
         if ($user) {
             return response()->json([
