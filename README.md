@@ -34,7 +34,7 @@ php artisan db:seed
 php artisan db:seed --class=CustomerOrderSeeder 
 
 ```
-
+> swagger collection can be found at http://127.0.0.1:8000/swagger/docs
 > postman collection was generated and stored as collection.postman_collection.json
 
 ## Libraries List

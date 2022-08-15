@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "60aa911d-cd47-4477-9b04-8a048674b7d3",
 		"name": "BuckHill Ecommerce Collection",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15158827"
 	},
 	"item": [
@@ -29,7 +29,16 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/user/login"
+						"url": {
+							"raw": "{{BASE_URL}}/user/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
@@ -56,7 +65,16 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/user/create"
+						"url": {
+							"raw": "{{BASE_URL}}/user/create",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"create"
+							]
+						}
 					},
 					"response": []
 				},
@@ -71,7 +89,15 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_USER_URL}}/logout"
+						"url": {
+							"raw": "{{BASE_USER_URL}}/logout",
+							"host": [
+								"{{BASE_USER_URL}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
 					},
 					"response": []
 				}
@@ -91,7 +117,15 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/user"
+						"url": {
+							"raw": "{{BASE_URL}}/user",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
@@ -136,7 +170,16 @@
 								}
 							]
 						},
-						"url": "{{BASE_URL}}/user/edit"
+						"url": {
+							"raw": "{{BASE_URL}}/user/edit",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"edit"
+							]
+						}
 					},
 					"response": []
 				},
@@ -151,7 +194,15 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/user"
+						"url": {
+							"raw": "{{BASE_URL}}/user",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
 					},
 					"response": []
 				}
@@ -186,7 +237,15 @@
 										}
 									}
 								},
-								"url": "{{BASE_ADMIN_URL}}/login"
+								"url": {
+									"raw": "{{BASE_ADMIN_URL}}/login",
+									"host": [
+										"{{BASE_ADMIN_URL}}"
+									],
+									"path": [
+										"login"
+									]
+								}
 							},
 							"response": []
 						},
@@ -201,7 +260,15 @@
 										"type": "text"
 									}
 								],
-								"url": "{{BASE_ADMIN_URL}}/logout"
+								"url": {
+									"raw": "{{BASE_ADMIN_URL}}/logout",
+									"host": [
+										"{{BASE_ADMIN_URL}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
 							},
 							"response": []
 						},
@@ -225,7 +292,15 @@
 										}
 									}
 								},
-								"url": "{{BASE_ADMIN_URL}}/create"
+								"url": {
+									"raw": "{{BASE_ADMIN_URL}}/create",
+									"host": [
+										"{{BASE_ADMIN_URL}}"
+									],
+									"path": [
+										"create"
+									]
+								}
 							},
 							"response": []
 						}
@@ -245,7 +320,15 @@
 										"type": "text"
 									}
 								],
-								"url": "{{BASE_ADMIN_URL}}/user-listing"
+								"url": {
+									"raw": "{{BASE_ADMIN_URL}}/user-listing",
+									"host": [
+										"{{BASE_ADMIN_URL}}"
+									],
+									"path": [
+										"user-listing"
+									]
+								}
 							},
 							"response": []
 						},
@@ -290,7 +373,16 @@
 										}
 									]
 								},
-								"url": "{{BASE_ADMIN_URL}}/user-edit/99f1f140-2070-41b6-b534-8d677d92347b"
+								"url": {
+									"raw": "{{BASE_ADMIN_URL}}/user-edit/{uuid}",
+									"host": [
+										"{{BASE_ADMIN_URL}}"
+									],
+									"path": [
+										"user-edit",
+										"{uuid}"
+									]
+								}
 							},
 							"response": []
 						},
@@ -305,7 +397,16 @@
 										"type": "text"
 									}
 								],
-								"url": "{{BASE_ADMIN_URL}}/user-delete/99f1f140-2070-41b6-b534-8d677d92347b"
+								"url": {
+									"raw": "{{BASE_ADMIN_URL}}/user-delete/{uuid}",
+									"host": [
+										"{{BASE_ADMIN_URL}}"
+									],
+									"path": [
+										"user-delete",
+										"{uuid}"
+									]
+								}
 							},
 							"response": []
 						}
@@ -341,7 +442,15 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/orders"
+						"url": {
+							"raw": "{{BASE_URL}}/orders",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
 					},
 					"response": []
 				},
@@ -535,7 +644,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/orders/205c7db0-4934-40b7-a442-74eb23bf33f5"
+						"url": {
+							"raw": "{{BASE_URL}}/orders/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -550,7 +668,17 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/orders/205c7db0-4934-40b7-a442-74eb23bf33f5/download"
+						"url": {
+							"raw": "{{BASE_URL}}/orders/{uuid}/download",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders",
+								"{uuid}",
+								"download"
+							]
+						}
 					},
 					"response": []
 				},
@@ -574,7 +702,16 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/orders/5f023322-054b-4e44-acc1-0e272a82ea70"
+						"url": {
+							"raw": "{{BASE_URL}}/orders/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -589,7 +726,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/orders/5f023322-054b-4e44-acc1-0e272a82ea70"
+						"url": {
+							"raw": "{{BASE_URL}}/orders/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"orders",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				}
@@ -650,7 +796,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/categories/086d1a72-5301-4d7c-b830-6986ffc13ea9"
+						"url": {
+							"raw": "{{BASE_URL}}/categories/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"categories",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -674,7 +829,15 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/categories"
+						"url": {
+							"raw": "{{BASE_URL}}/categories",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
 					},
 					"response": []
 				},
@@ -698,7 +861,16 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/categories/ba0d4f36-1761-4edf-9aef-be5988febd18"
+						"url": {
+							"raw": "{{BASE_URL}}/categories/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"categories",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -713,7 +885,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/categories/86e17ff9-1646-49a0-8fcc-cbab87284f65"
+						"url": {
+							"raw": "{{BASE_URL}}/categories/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"categories",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				}
@@ -733,7 +914,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/files/5badbe0d-7c78-405d-97f4-39736330e495"
+						"url": {
+							"raw": "{{BASE_URL}}/files/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"files",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -758,7 +948,15 @@
 								}
 							]
 						},
-						"url": "{{BASE_URL}}/files"
+						"url": {
+							"raw": "{{BASE_URL}}/files",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"files"
+							]
+						}
 					},
 					"response": []
 				}
@@ -778,7 +976,15 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/order-statuses"
+						"url": {
+							"raw": "{{BASE_URL}}/order-statuses",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order-statuses"
+							]
+						}
 					},
 					"response": []
 				},
@@ -793,7 +999,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/order-statuses/50bcb342-28db-4e67-a1d4-8ba10d5c6c36"
+						"url": {
+							"raw": "{{BASE_URL}}/order-statuses/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order-statuses",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -822,7 +1037,15 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/order-statuses"
+						"url": {
+							"raw": "{{BASE_URL}}/order-statuses",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order-statuses"
+							]
+						}
 					},
 					"response": []
 				},
@@ -846,7 +1069,16 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/order-statuses/50bcb342-28db-4e67-a1d4-8ba10d5c6c36"
+						"url": {
+							"raw": "{{BASE_URL}}/order-statuses/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order-statuses",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -861,7 +1093,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/order-statuses/50bcb342-28db-4e67-a1d4-8ba10d5c6c36"
+						"url": {
+							"raw": "{{BASE_URL}}/order-statuses/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order-statuses",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				}
@@ -881,7 +1122,15 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/payments"
+						"url": {
+							"raw": "{{BASE_URL}}/payments",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payments"
+							]
+						}
 					},
 					"response": []
 				},
@@ -896,7 +1145,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/payments/93fa7cbd-9587-44df-b6a7-a0e39e94e3bb"
+						"url": {
+							"raw": "{{BASE_URL}}/payments/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payments",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -925,7 +1183,15 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/payments"
+						"url": {
+							"raw": "{{BASE_URL}}/payments",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payments"
+							]
+						}
 					},
 					"response": []
 				},
@@ -949,7 +1215,16 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/payments/f1fbe60f-f298-4845-ab62-1f34eb543b98"
+						"url": {
+							"raw": "{{BASE_URL}}/payments/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payments",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -964,7 +1239,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/payments/5e559643-650e-472b-938a-11affa727166"
+						"url": {
+							"raw": "{{BASE_URL}}/payments/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payments",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1046,7 +1330,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/products/3b4dacd3-7def-430c-848c-66e01eeb7235"
+						"url": {
+							"raw": "{{BASE_URL}}/products/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1075,7 +1368,15 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/products"
+						"url": {
+							"raw": "{{BASE_URL}}/products",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1099,7 +1400,16 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/products/e103c5fa-7993-4d76-90a8-331efa635389"
+						"url": {
+							"raw": "{{BASE_URL}}/products/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1114,7 +1424,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/products/dbc60644-9671-4e9a-9255-d4a48ab5e106"
+						"url": {
+							"raw": "{{BASE_URL}}/products/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"products",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1134,7 +1453,15 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/brands"
+						"url": {
+							"raw": "{{BASE_URL}}/brands",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"brands"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1149,7 +1476,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/brands/847922cf-bdd1-4f1a-beef-de3486677196"
+						"url": {
+							"raw": "{{BASE_URL}}/brands/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"brands",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1173,7 +1509,15 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/brands"
+						"url": {
+							"raw": "{{BASE_URL}}/brands",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"brands"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1197,7 +1541,16 @@
 								}
 							}
 						},
-						"url": "{{BASE_URL}}/brands/847922cf-bdd1-4f1a-beef-de3486677196"
+						"url": {
+							"raw": "{{BASE_URL}}/brands/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"brands",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1212,7 +1565,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{BASE_URL}}/brands/847922cf-bdd1-4f1a-beef-de3486677196"
+						"url": {
+							"raw": "{{BASE_URL}}/brands/{uuid}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"brands",
+								"{uuid}"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1221,9 +1583,13 @@
 	],
 	"auth": {
 		"type": "bearer",
-		"bearer": {
-			"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3YxL3VzZXIvbG9naW4iLCJpYXQiOjE2NjAzMDU2MzcsImV4cCI6MTY2MDMwOTIzNywibmJmIjoxNjYwMzA1NjM3LCJqdGkiOiI2eEVLbmVtbDVqaGZ1MU9pIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.AdNZ-ClKCYHfzDy_xycj6FKl9WNEsnkmN564CGU67ts"
-		}
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3YxL3VzZXIvbG9naW4iLCJpYXQiOjE2NjAzMDU2MzcsImV4cCI6MTY2MDMwOTIzNywibmJmIjoxNjYwMzA1NjM3LCJqdGkiOiI2eEVLbmVtbDVqaGZ1MU9pIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.AdNZ-ClKCYHfzDy_xycj6FKl9WNEsnkmN564CGU67ts",
+				"type": "string"
+			}
+		]
 	},
 	"event": [
 		{
@@ -1248,17 +1614,17 @@
 	"variable": [
 		{
 			"key": "BASE_URL",
-			"value": "",
+			"value": "http://127.0.0.1:8000/api/v1",
 			"type": "string"
 		},
 		{
 			"key": "BASE_USER_URL",
-			"value": "",
+			"value": "http://127.0.0.1:8000/api/v1/user",
 			"type": "string"
 		},
 		{
 			"key": "BASE_ADMIN_URL",
-			"value": "",
+			"value": "http://127.0.0.1:8000/api/v1/admin",
 			"type": "string"
 		}
 	]

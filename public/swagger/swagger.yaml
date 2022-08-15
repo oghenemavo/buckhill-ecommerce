@@ -1,0 +1,1131 @@
+openapi: 3.0.0
+info:
+  title: BuckHill Ecommerce Collection
+  version: 1.0.0
+servers:
+  - url: /api/v1/
+  - url: /api/v1/user/
+  - url: /api/v1/admin/
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+tags:
+  - name: Authentication
+  - name: User
+  - name: Admin
+  - name: Admin > Authentication
+  - name: Admin > User
+  - name: Order
+  - name: Category
+  - name: Files
+  - name: Order Status
+  - name: Payment
+  - name: Products
+  - name: Brand
+paths:
+  /user/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: vicky53@example.com
+                password: userpassword
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/create:
+    post:
+      tags:
+        - Authentication
+      summary: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                first_name: John
+                last_name: mighty
+                phone_number: '2423876008'
+                address: 1680 surulere fafunwa street
+                email: john.mighty@demo.com
+                password: '123456'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /logout:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: Log out
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user:
+    get:
+      tags:
+        - User
+      summary: Fetch User
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - User
+      summary: Delete User
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/edit:
+    put:
+      tags:
+        - User
+      summary: Update User Profile
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                first_name:
+                  type: string
+                  example: Mavi
+                last_name:
+                  type: string
+                  example: Onogomuho
+                phone_number:
+                  type: integer
+                  example: '345679000'
+                address:
+                  type: string
+                  example: 1680 sanusi fafunwa street
+                email:
+                  type: string
+                  example: mavi@demo.com
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /login:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: admin@buckhill.co.uk
+                password: admin
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /create:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: Create Admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                first_name: Admin
+                last_name: Super
+                phone_number: '2532567767'
+                address: 1680 surulere fafunwa street
+                email: admin@demo.com
+                password: '123456'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user-listing:
+    get:
+      tags:
+        - Admin > User
+      summary: User List
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user-edit/{uuid}:
+    put:
+      tags:
+        - Admin > User
+      summary: Edit User
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                first_name:
+                  type: string
+                  example: stephen
+                last_name:
+                  type: string
+                  example: johnson
+                email:
+                  type: string
+                  example: john.doe@demo.com
+                address:
+                  type: string
+                  example: europe
+                phone_number:
+                  type: integer
+                  example: '34347548402'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user-delete/{uuid}:
+    delete:
+      tags:
+        - Admin > User
+      summary: Delete User
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /orders:
+    post:
+      tags:
+        - Order
+      summary: Create Order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                user_id: '1'
+                order_status_id: '1'
+                payment_id: '33'
+                products:
+                  - product: 2e2a95dd-d3dc-4c22-b869-a48cc9641758
+                    quantity: '9'
+                  - product: de8be618-0ccd-499a-a752-835c38d24f5d
+                    quantity: '12'
+                address:
+                  billing: 55412 Noemy Fort Lake Addisonland, TX 44330
+                  shipping: 50561 Harber Summit Suite 122 New Juvenal, ID 56644-0763
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Order
+      summary: Orders Dashboard
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /orders/shipment-locator:
+    get:
+      tags:
+        - Order
+      summary: Orders Shipment
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: order_uuid
+          in: query
+          schema:
+            type: string
+        - name: customer_id
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /orders/{uuid}:
+    get:
+      tags:
+        - Order
+      summary: Get Order
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Order
+      summary: Update Order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                user_id: '1'
+                order_status_id: '1'
+                payment_id: '33'
+                products:
+                  - product: 2e2a95dd-d3dc-4c22-b869-a48cc9641758
+                    quantity: '9'
+                address:
+                  billing: 55412 Noemy Fort Lake Addisonland, TX 44330
+                  shipping: 50561 Harber Summit Suite 122 New Juvenal, ID 56644-0763
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Order
+      summary: Delete Order
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /orders/{uuid}/download:
+    get:
+      tags:
+        - Order
+      summary: Download Order
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /categories:
+    get:
+      tags:
+        - Category
+      summary: All Categories
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+          example: title
+        - name: desc
+          in: query
+          schema:
+            type: boolean
+          example: 'true'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Category
+      summary: Create catgory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Category Four
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /categories/{uuid}:
+    get:
+      tags:
+        - Category
+      summary: get Category
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Category
+      summary: Update catgory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Category One
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Category
+      summary: Delete category
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /files/{uuid}:
+    post:
+      tags:
+        - Files
+      summary: Download File
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /files:
+    post:
+      tags:
+        - Files
+      summary: Upload File
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /order-statuses:
+    get:
+      tags:
+        - Order Status
+      summary: All Order Statuses
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Order Status
+      summary: Create Order Status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Status Four
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /order-statuses/{uuid}:
+    get:
+      tags:
+        - Order Status
+      summary: Get Order Status
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Order Status
+      summary: Update Order Status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Product Try
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Order Status
+      summary: Delete Order Status
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /payments:
+    get:
+      tags:
+        - Payment
+      summary: All Payments
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Payment
+      summary: Create Payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type: bank_transfer
+                details:
+                  swift: 7bfcf70a-22b4-4a69-91bc-66068d0e3af8
+                  iban: 7bfcf70a-22b4-4a69-91bc-66068d0e3af8
+                  name: 7bfcf70a-22b4-4a69-91bc-66068d0e3af8
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /payments/{uuid}:
+    get:
+      tags:
+        - Payment
+      summary: Get Payment
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Payment
+      summary: Update Payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type: bank_transfer
+                details:
+                  swift: 456VEK3MPE
+                  iban: EE452817NEXF6U6Y602G
+                  name: Aurelia Bode
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Payment
+      summary: Delete Payment
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /products:
+    get:
+      tags:
+        - Products
+      summary: All Products
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+          example: title
+        - name: category
+          in: query
+          schema:
+            type: string
+          example: 4ccc41c5-a31d-463e-9521-055d5c2fc0a8
+        - name: title
+          in: query
+          schema:
+            type: string
+          example: Product Four
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Products
+      summary: Create Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                category_uuid: e9bcc314-d174-45b1-9f27-aefd826cfd3d
+                title: Product ten
+                price: '15.30'
+                description: lorem ipsum
+                metadata:
+                  brand: 432321d6-f7ca-402b-910f-16ae66a75d5b
+                  image: 32138e90-0848-43ce-9265-42a7dfc593fd
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /products/{uuid}:
+    get:
+      tags:
+        - Products
+      summary: Get Product
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Products
+      summary: Update Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                category_uuid: de19157a-73dc-4913-8360-963219176bb6
+                title: Product Try
+                price: '600.89'
+                description: lorem ipsum
+                metadata:
+                  brand: de19157a-73dc-4913-8360-963219176bb6
+                  image: de19157a-73dc-4913-8360-963219176bb6
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Products
+      summary: Delete Product
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /brands:
+    get:
+      tags:
+        - Brand
+      summary: All Brand
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Brand
+      summary: Create Brand
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Brand Four
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /brands/{uuid}:
+    get:
+      tags:
+        - Brand
+      summary: Get Brand
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Brand
+      summary: Update Brand
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Brand X
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Brand
+      summary: Delete Brand
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: uuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
